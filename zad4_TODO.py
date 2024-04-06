@@ -58,7 +58,7 @@ def get_right_subtree(root: Optional[Node]):
 
 
 def is_valid_BST(root: Optional[Node]) -> bool:
-    # TODO: Mając dany korzeń drzewa binarnego root sprawdź czy jest ono zbalansowane.
+    # TODO: Mając dany korzeń drzewa binarnego root sprawdź czy jest ono drzewem BST.
     pass
 
 
