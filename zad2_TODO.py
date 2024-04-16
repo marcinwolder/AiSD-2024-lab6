@@ -49,14 +49,28 @@ def create_binary_tree(node_values: List[str]):
 def is_same_tree(p: Optional[Node], q: Optional[Node]) -> bool:
     # TODO Mając podane dwa korzenie p i q reprezentujące dwa drzewa binarne, 
     # sprawdź są identyczne.
-    pass
+    if p is None and q is None:
+        return True
+    if p is None or q is None:
+        return False
+
+    if p.val != q.val:
+        return False
+    else:
+        return is_same_tree(p.left, q.left) and is_same_tree(p.right, p.right)
 
 
 def is_subtree(root: Optional[Node], subRoot: Optional[Node]) -> bool:
     # TODO Mając podane dwa korzenie root i subRoot reprezentujące dwa drzewa binarne,
     # sprawdź czy subRoot jest poddrzewem drzewa root.
     # Podpowiedź: wykorzystaj metodę is_same_tree
-    pass
+    if is_same_tree(root, subRoot):
+        return True
+
+    if root is None:
+        return False
+
+    return is_subtree(root.left, subRoot) or is_subtree(root.right, subRoot)
 
 
 # nie zmieniaj poniższego kodu
