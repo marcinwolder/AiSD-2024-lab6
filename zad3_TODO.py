@@ -6,7 +6,6 @@ Po zaimplementowaniu rozwiązania komendy `pass` powinny być usunięte.
 """
 
 from typing import List, Optional
-import math
 
 
 class Node:

@@ -59,7 +59,28 @@ def get_right_subtree(root: Optional[Node]):
 
 def is_valid_BST(root: Optional[Node]) -> bool:
     # TODO: Mając dany korzeń drzewa binarnego root sprawdź czy jest ono drzewem BST.
-    pass
+    valid, _, _ = is_valid_BST_with_min_max(root)
+    if valid:
+        return True
+    return False
+
+
+def is_valid_BST_with_min_max(root: Optional[Node]) -> (bool, int, int):
+    if root is None:
+        return True, None, None
+
+    left_valid, left_min, left_max = is_valid_BST_with_min_max(root.left)
+    right_valid, right_min, right_max = is_valid_BST_with_min_max(root.right)
+
+    left_min = left_min or root.val
+    left_max = left_max or root.val
+    right_min = right_min or root.val
+    right_max = right_max or root.val
+
+    if left_valid and right_valid and left_max <= root.val <= right_min:
+        return True, left_min, right_max
+
+    return False, left_min, right_max
 
 
 # nie modyfikuj poniższego kodu
