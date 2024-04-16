@@ -6,6 +6,7 @@ Po zaimplementowaniu rozwiązania komendy `pass` powinny być usunięte.
 """
 
 from typing import List, Optional
+import math
 
 
 class Node:
@@ -48,12 +49,33 @@ def create_binary_tree(node_values: List[str]):
 
 def get_height(root: Optional[Node]) -> int:
     # TODO: Mając dany korzeń drzewa binarnego root zwróć jego wysokość
-    pass
+    if root is None:
+        return -1
+
+    return max(get_height(root.left), get_height(root.right))+1
 
 
 def is_balanced(root: Optional[Node]) -> bool:
     # TODO: Mając dany korzeń drzewa binarnego root sprawdź czy to drzewo jest zbalansowane.
-    pass
+    max_height = get_height(root)  # O(n)
+    if get_height_diff(root, max_height) > max_height:  # O(n)
+        return False
+    return True
+
+
+def get_height_diff(root: Optional[Node], max_height: int) -> int:
+    # returns tree height or `max_height+1` if height diff between left/right subtree is >= 2
+    # Warning! max_height has to be greater/equal actual tree height
+    if root is None:
+        return -1
+
+    left_height = get_height_diff(root.left, max_height)
+    right_height = get_height_diff(root.right, max_height)
+
+    if abs(left_height-right_height) > 1:
+        return max_height+1
+
+    return max(left_height, right_height)+1
 
 # nie modyfikuj poniższego kodu
 if __name__ == "__main__":
